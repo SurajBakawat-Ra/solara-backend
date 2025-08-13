@@ -1,13 +1,12 @@
-
 package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"time"
+	"io/ioutil"
 )
 
 type Game struct {
@@ -28,90 +27,16 @@ type ContactMessage struct {
 	Message string `json:"message"`
 }
 
-var games = []Game{
-	{
-		ID:    "vector-horizon",
-		Title: "Vector Horizon",
-		Stores: map[string]string{
-			"steam": "https://store.steampowered.com/app/3801540/Vector_Horizon/",
-		},
-		Trailer:   strPtr("Q_pv6QVvIjA"),
-		Platforms: []string{"PC"},
-		Tags:      []string{"Arcade", "Action"},
-		Images: map[string]string{
-			"cover": "https://img.youtube.com/vi/Q_pv6QVvIjA/hqdefault.jpg",
-		},
-		Description: "Fast-paced action set in a stylized vector world. Official store and trailer links below.",
-	},
-	{
-		ID:    "gunboxing",
-		Title: "GunBoxing",
-		Stores: map[string]string{
-			"steam": "https://store.steampowered.com/app/1978090/GunBoxing/",
-		},
-		Trailer:   strPtr("YiDwlVA0btQ"),
-		Platforms: []string{"PC"},
-		Tags:      []string{"Fighting", "Action"},
-		Images: map[string]string{
-			"cover": "https://img.youtube.com/vi/YiDwlVA0btQ/hqdefault.jpg",
-		},
-		Description: "Punch, shoot, and style—an over-the-top brawler. Official store and trailer links below.",
-	},
-	{
-		ID:    "cosmo-war",
-		Title: "Cosmo War",
-		Stores: map[string]string{
-			"googlePlay": "https://play.google.com/store/apps/details?id=com.solaragames.cosmowar",
-		},
-		Trailer:   nil,
-		Platforms: []string{"Android"},
-		Tags:      []string{"Arcade", "Casual"},
-		Images:    map[string]string{"cover": ""},
-		Description: "Mobile arcade action. Google Play link below.",
-	},
-	{
-		ID:    "almanac",
-		Title: "Almanac",
-		Stores: map[string]string{
-			"googlePlay": "https://play.google.com/store/apps/details?id=com.RaAten.Almanac",
-		},
-		Trailer:   strPtr("pW4nIEWJsmc"),
-		Platforms: []string{"Android"},
-		Tags:      []string{"Puzzle", "Casual"},
-		Images:    map[string]string{"cover": "https://img.youtube.com/vi/pW4nIEWJsmc/hqdefault.jpg"},
-		Description: "A thoughtful mobile experience. Trailer and store link below.",
-	},
-	{
-		ID:    "chicken-bounce",
-		Title: "Chicken Bounce",
-		Stores: map[string]string{
-			"googlePlay": "https://play.google.com/store/apps/details?id=com.solaragames.chickenbounce",
-		},
-		Trailer:   nil,
-		Platforms: []string{"Android"},
-		Tags:      []string{"Arcade", "Casual"},
-		Images:    map[string]string{"cover": ""},
-		Description: "Light, bouncy fun on mobile. Google Play link below.",
-	},
-	{
-		ID:    "tappy-fly",
-		Title: "Tappy Fly",
-		Stores: map[string]string{
-			"googlePlay": "https://play.google.com/store/apps/details?id=com.solaragames.tappyfly",
-		},
-		Trailer:   nil,
-		Platforms: []string{"Android"},
-		Tags:      []string{"Arcade", "Casual"},
-		Images:    map[string]string{"cover": ""},
-		Description: "Tap to fly and dodge in this pick-up-and-play mobile game.",
-	},
-}
-
-func strPtr(s string) *string { return &s }
+var games []Game
 
 func main() {
 	port := getEnv("PORT", "8080")
 	allowOrigin := getEnv("ALLOW_ORIGIN", "*")
+
+	// Load games from JSON file
+	if err := loadGames("data/games.json"); err != nil {
+		log.Fatalf("Failed to load games: %v", err)
+	}
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/health", func(w http.ResponseWriter, r *http.Request) {
@@ -148,7 +73,6 @@ func main() {
 			return
 		}
 		log.Printf("Contact message received: %+v\n", msg)
-		// TODO: Integrate email (SMTP or a provider). For now, just echo success.
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusCreated)
 		resp := map[string]interface{}{
@@ -163,6 +87,17 @@ func main() {
 	if err := http.ListenAndServe(":"+port, handler); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func loadGames(filePath string) error {
+	data, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		return err
+	}
+	if err := json.Unmarshal(data, &games); err != nil {
+		return err
+	}
+	return nil
 }
 
 func withLogging(next http.Handler) http.Handler {

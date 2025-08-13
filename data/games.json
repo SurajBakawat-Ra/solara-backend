@@ -1,0 +1,116 @@
+[
+  {
+    "id": "vector-horizon",
+    "title": "Vector Horizon",
+    "stores": {
+      "steam": "https://store.steampowered.com/app/3801540/Vector_Horizon/"
+    },
+    "trailer": "Q_pv6QVvIjA",
+    "platforms": [
+      "PC"
+    ],
+    "tags": [
+      "Arcade",
+      "Action"
+    ],
+    "images": {
+      "cover": "https://img.youtube.com/vi/Q_pv6QVvIjA/hqdefault.jpg"
+    },
+    "description": "Fast-paced action set in a stylized vector world. Official store and trailer links below."
+  },
+  {
+    "id": "gunboxing",
+    "title": "GunBoxing",
+    "stores": {
+      "steam": "https://store.steampowered.com/app/1978090/GunBoxing/"
+    },
+    "trailer": "YiDwlVA0btQ",
+    "platforms": [
+      "PC"
+    ],
+    "tags": [
+      "Fighting",
+      "Action"
+    ],
+    "images": {
+      "cover": "https://img.youtube.com/vi/YiDwlVA0btQ/hqdefault.jpg"
+    },
+    "description": "Punch, shoot, and style\u2014an over-the-top brawler. Official store and trailer links below."
+  },
+  {
+    "id": "cosmo-war",
+    "title": "Cosmo War",
+    "stores": {
+      "googlePlay": "https://play.google.com/store/apps/details?id=com.solaragames.cosmowar"
+    },
+    "trailer": "OOpC1lYbfBs",
+    "platforms": [
+      "Android"
+    ],
+    "tags": [
+      "Arcade",
+      "Casual"
+    ],
+    "images": {
+      "cover": "https://img.youtube.com/vi/OOpC1lYbfBs/hqdefault.jpg"
+    },
+    "description": "Mobile arcade action. Google Play link below."
+  },
+  {
+    "id": "almanac",
+    "title": "Almanac",
+    "stores": {
+      "googlePlay": "https://play.google.com/store/apps/details?id=com.RaAten.Almanac"
+    },
+    "trailer": "pW4nIEWJsmc",
+    "platforms": [
+      "Android"
+    ],
+    "tags": [
+      "Puzzle",
+      "Casual"
+    ],
+    "images": {
+      "cover": "https://img.youtube.com/vi/pW4nIEWJsmc/hqdefault.jpg"
+    },
+    "description": "A thoughtful mobile experience. Trailer and store link below."
+  },
+  {
+    "id": "chicken-bounce",
+    "title": "Chicken Bounce",
+    "stores": {
+      "googlePlay": "https://play.google.com/store/apps/details?id=com.solaragames.chickenbounce"
+    },
+    "trailer": null,
+    "platforms": [
+      "Android"
+    ],
+    "tags": [
+      "Arcade",
+      "Casual"
+    ],
+    "images": {
+      "cover": "https://play-lh.googleusercontent.com/Bg3XDY6b4aFpKvlJxN4244mM-46-DMGXergtwO7GxcKMmaqe1ox7P6Ng-7mLDKnBmaYU=s256-rw"
+    },
+    "description": "Light, bouncy fun on mobile. Google Play link below."
+  },
+  {
+    "id": "tappy-fly",
+    "title": "Tappy Fly",
+    "stores": {
+      "googlePlay": "https://play.google.com/store/apps/details?id=com.solaragames.tappyfly"
+    },
+    "trailer": null,
+    "platforms": [
+      "Android"
+    ],
+    "tags": [
+      "Arcade",
+      "Casual"
+    ],
+    "images": {
+      "cover": "https://play-lh.googleusercontent.com/BB516ty5zmLHYZgEgOna6kSF2H_TJwhGKobDhv0-7O90SY8bcVXF7NyiK4mnhc7wkg=w240-h480-rw"
+    },
+    "description": "Tap to fly and dodge in this pick-up-and-play mobile game."
+  }
+]
